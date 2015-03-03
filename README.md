@@ -21,6 +21,13 @@ or source it directly from Github (dangerous but neat):
 source <(curl https://raw.githubusercontent.com/kba/shcolor/master/shcolor.sh)
 ```
 
+or download it on demand:
+
+```bash
+source ~/.shcolor.sh 2>/dev/null || source <(curl -s https://raw.githubusercontent.com/kba/shcolor/master/shcolor.sh|tee ~/.shcolor.sh)
+```
+This way, it will only download if `~/.shcolor.sh` doesn't exist and subsequently use it. Remove `~/.shcolor.sh` to update.
+
 ## Syntax
 
 ```
