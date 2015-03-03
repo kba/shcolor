@@ -18,7 +18,7 @@ source /path/to/shcolor.sh
 or source it directly from Github (dangerous but neat):
 
 ```bash
-source <(https://raw.githubusercontent.com/kba/shcolor/master/shcolor.sh)
+source <(curl https://raw.githubusercontent.com/kba/shcolor/master/shcolor.sh)
 ```
 
 ## Syntax
