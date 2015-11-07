@@ -9,7 +9,6 @@ __cForeground256="${__ESC_SEQ}38;5;"
 __cBackground="${__ESC_SEQ}4"
 __cBackground256="${__ESC_SEQ}48;5;"
 
-
 _internalC() {
     local whichground=$1
     local color=$2
@@ -61,4 +60,10 @@ C() {
     if [[ ! -z $1 ]];then
         _internalC "Back" $1
     fi
+}
+
+Cecho() {
+    $fmt = $1
+    $msg = $2
+    echo "`C $fmt`$msg"
 }
