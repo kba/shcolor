@@ -65,5 +65,5 @@ C() {
 Cecho() {
     $fmt = $1
     $msg = $2
-    echo "`C $fmt`$msg"
+    echo "`C $fmt`$msg`C`"
 }
