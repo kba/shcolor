@@ -1,8 +1,10 @@
 __ESC_SEQ="\x1b["
 __cReset="${__ESC_SEQ}39;49m"
 __cBold=";1"
+__cItalic=";3"
 __cUnderline=";4"
 __cStopBold="${__ESC_SEQ}24m"
+__cStopItalic="${__ESC_SEQ}21m"
 __cStopUnderline="${__ESC_SEQ}21m"
 __cForeground="${__ESC_SEQ}3"
 __cForeground256="${__ESC_SEQ}38;5;"
@@ -13,7 +15,8 @@ _internalC() {
     local whichground=$1
     local color=$2
     local bold=$3
-    local underline=$4
+    local italic=$4
+    local underline=$5
 
     local flag256=""
     local output=""
@@ -30,15 +33,18 @@ _internalC() {
     [[ "$ACTUAL_SHELL" == "bash" ]] && output="${!varname}$color"
 
     [[ "$underline" == 1 ]] && output="${output}${__cUnderline}"
+    [[ "$italic" == 1 ]] && output="${output}${__cUnderline}"
     [[ "$bold"      == 1 ]] && output="${output}${__cBold}"
     output="${output}m"
     echo -ne "$output"
 }
 C() {
     local bold="0"
+    local italic="0"
     local underline="0"
     if [[ -z "$1" ]];then
         echo -ne "${__cStopBold}"
+        echo -ne "${__cStopItalic}"
         echo -ne "${__cStopUnderline}"
         echo -ne "${__cReset}"
         return
@@ -48,6 +54,10 @@ C() {
         local color=$1
         if [[ "$2" == "b" ]];then
             bold=1
+            shift
+        fi
+        if [[ "$2" == "i" ]];then
+            italic=1
             shift
         fi
         if [[ "$2" == "u" ]];then
