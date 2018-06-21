@@ -1,3 +1,4 @@
+test -t 1 || COLORS_ENABLED=false
 __ESC_SEQ="\x1b["
 __cReset="${__ESC_SEQ}39;49m"
 __cBold=";1"
@@ -39,6 +40,9 @@ _internalC() {
     echo -ne "$output"
 }
 C() {
+    if [[ "$COLORS_ENABLED" == false ]];then
+        return
+    fi
     local bold="0"
     local italic="0"
     local underline="0"
